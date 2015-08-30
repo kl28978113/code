@@ -1,8 +1,9 @@
 #include <cstdio>
 
 int main() {
-	for (int i = 0; i < 4; ++i) {
+	int a;
+	for (int i = 0; i < 4; i++ )
 		printf("hehe\n");
-	}
+	scanf("%lf", &a);
 	return 0;
 }

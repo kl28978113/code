@@ -28,8 +28,7 @@ public:
 	bignum(ll x)
 	{
 		clear();
-		while (x) num[tot++] = x % MOD, x /= MOD;
-	}
+		while (x) num[tot++] = x % MOD, x /= MOD; }
 	void clear()
 	{
 		tot = 0;
@@ -50,6 +49,9 @@ public:
 			{
 				num[tot + 1] += num[tot] / MOD;
 				num[tot] %= MOD;
+				
+				
+//				printf
 			}
 			++tot;
 		}
@@ -65,9 +67,11 @@ int t[LOGN + 1], ct[LOGN + 1], ts;
 
 int main()
 {
+//	hehe();
+	printf("hehe");
 	while (scanf("%d", &n) != EOF) {
 	for (int i = 1; i <= n; ++i) Log[i] = log((double)i) / log(2.0);
-	for (int i = 1; i <= n; ++i)
+	for (int i = 1; i <= n; ++i)ZZ
 	{
 		f[i][1] = Log[2] * (double)(i - 1), from[i][1] = 1;
 		for (int j = 2; j <= Log[i]; ++j)
@@ -91,6 +95,8 @@ int main()
 		for (int i = x / from[x][pos] - 1; i > 0; --i)
 			ans *= p[pos];
 	ans.print();
+	f
 	}
 	return 0;
 }
+
