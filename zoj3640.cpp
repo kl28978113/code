@@ -12,7 +12,7 @@ double DPS(int f) {
 			DP[f] += (1.0 / N) * t[i];
 		else
 			DP[f] += (1.0 / N) * (DPS(f + C[i]) + 1.0);
-
+    
 	return DP[f];
 }
 

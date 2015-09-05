@@ -1,42 +1,34 @@
 #include <cstdio>
-#include <set>
 using namespace std;
-
-set<int> S;
 
 int main() {
 	int T;
 	scanf("%d", &T);
 	while (T--) {
-		S.clear();
 		int N, V, K;
 		scanf("%d%d%d", &N, &V, &K);
-		int v[110], m[110], DP[1010] = {0};
+		int v[110], m[110], DP[1010][35] = {0};
 		for (int i = 0; i < N; i++) 
 			scanf("%d", &v[i]);
 		for (int i = 0; i < N; i++) 
 			scanf("%d", &m[i]);
 
-
-
+		int A[35] = {0}, B[35] = {0};
 		for (int i = 0; i < N; i++)
-			for (int j = V; j >= v[i]; j--) {
-				S.insert(DP[j-v[i]] + m[i]);
-				if (DP[j] < DP[j-v[i]] + m[i]) {
-					DP[j] = DP[j-v[i]] + m[i];
+			for (int j = V; j >= m[i]; j--) {
+				for (int r = 1; r <= K; r++) {
+					A[r] = DP[j-m[i]][r] + v[i];
+					B[r] = DP[j][r];
+				}
+				int a, b, c;
+				a = b = c = 1;
+
+				while (c <= K && (a <= K || b <= K)) {
+					DP[j][c] = A[a] > B[b] ? A[a++] : B[b++];
+					c += (DP[j][c] != DP[j][c-1]);
 				}
 			}
-
-		if (S.size() < K) {
-			puts("0");
-			continue;
-		}
-
-		set<int>::iterator it = S.end();
-		for (int i = 0; i < K; i++)
-			it--;
-
-		printf("%d\n", *it);
+		printf("%d\n", DP[V][K]);
 	}
 	return 0;
 }
