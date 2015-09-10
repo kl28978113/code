@@ -316,34 +316,38 @@ int main(void)
 		for (int i = 0; i < N; i++)
 			scanf("%s", s[i]);
 
-		if (N == 1) 
+		if (N == 1) {
 			puts("Yes");
-		else if (N == 2) {
+		} else if (N == 2) {
 			BigNum x(s[0]), y(s[1]);
-			if ((x > 0  && y > 0) || (!(x > 0) && !(y > 0)))
+			if ((x > 0 && y > 0) || (!(x > 0) && !(y > 0)))
 				puts("Yes");
 			else
 				puts("No");
 
 		} else { 
+
 			bool flag = true;
+			int cnt = 0;
+			BigNum sum(0);
 			for (int i = 0; i < N; i++) {
 				BigNum x(s[i]);
-				if (!(x > 0)) {
-					flag = false;
-				//	printf("hehe1\n");
-					break;
-				}
+				if (x > 0) cnt++;
+			}
+
+			if (cnt > 0 && cnt < N) {
+				puts("No");
+				continue;
 			}
 
 			for (int i = 1; i < N-1; i++) {
 				BigNum x1(s[i-1]), x2(s[i]), x3(s[i+1]);
 				BigNum z, z1;
-				z = x1 * x3 - x2 * x2;
-				z1 = z * -1;
-				if (z > 0 || z1 > 0) {
+				z = x1 * x3;
+				z1 = x2 * x2;
+				if (z > z1 || z1 > z) {
 					flag = false;
-				//	printf("hehe2\n");
+					//	printf("hehe2\n");
 					break;
 				}
 			}
